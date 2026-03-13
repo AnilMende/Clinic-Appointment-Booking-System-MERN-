@@ -5,62 +5,74 @@ import { asyncHandler } from "../utils/AsyncHandler.js";
 
 
 //Create Appointment
-export const createAppointment = asyncHandler(async (req,res) => {
+export const createAppointment = asyncHandler(async (req, res) => {
 
     //Destruture only when the user provides
     const { name, email, phone, date } = req.body;
 
-    //Validation check
-    if( !name || !email || !phone || !date ){
+    if (!name || !email || !phone || !date) {
         throw new ApiError(400, "All fields are required");
     }
 
+    //Date validation : useful incase if the user enters the past date
+    const bookingDate = new Date(date);
+    const today = new Date();
+
+    //removing the hours from today i.e. we only comparing the YYYY-MM-DD
+    //this help in the accurate comparison
+    today.setHours(0,0,0,0);
+
+    if(bookingDate < today){
+        throw new ApiError(400, "Cannot book an appointment in the past");
+    }
+
     //creating the document
-    const data = await Appointment.create({
+    const appointment = await Appointment.create({
         name, email, phone, date
     });
 
     //return success
     return res.status(201).json(
-        new ApiResponse(201, data, "Appointment booked successfully" )
+        new ApiResponse(201, appointment , "Appointment booked successfully")
     )
 })
 
 
 //Get Appointments or for admin to view all bookings
 //Admin sees all bookings
-export const getAllAppointments = asyncHandler (async (req, res) => {
+export const getAllAppointments = asyncHandler(async (req, res) => {
 
     //Fetch all appointments, sorted by most recent first
-    const data = await Appointment.find().sort({ createdAt : -1 });
+    const data = await Appointment.find().sort({ createdAt: -1 });
 
     return res.status(200).json(
         new ApiResponse(200, data, "All Appointments")
     )
 })
 
+
 //Update appointments status
-export const updateAppointmentStatus =  asyncHandler( async (req, res) => {
-    
+export const updateAppointmentStatus = asyncHandler(async (req, res) => {
+
     //Get Id from the params
     const { id } = req.params;
     const { status } = req.body;
 
     //Validate the status provided and it should be in one of the Enum values
-    const allowedStatuses = [ "Pending", "Confirmed", "Completed", "Cancelled" ];
-    if(!allowedStatuses.includes(status)){
-        throw new ApiError(401, "Invalid status value");
+    const allowedStatuses = ["Pending", "Confirmed", "Completed", "Cancelled"];
+    if (!allowedStatuses.includes(status)) {
+        throw new ApiError(400, "Invalid status value");
     }
 
     //Finding and updating
     const updatedAppointment = await Appointment.findByIdAndUpdate(
         id,
-        { $set : { status : status}},
-        {new : true, runValidators : true}
+        { status },
+        { new: true, runValidators: true }
     )
 
-    if(!updatedAppointment){
-        throw new ApiResponse(404, "Appointment not found");
+    if (!updatedAppointment) {
+        throw new ApiError(404, "Appointment not found");
     }
 
     return res.status(200).json(
@@ -69,18 +81,34 @@ export const updateAppointmentStatus =  asyncHandler( async (req, res) => {
 })
 
 //Delete Appointment
-export const deleteAppointment = asyncHandler( async( req, res) => {
+export const deleteAppointment = asyncHandler(async (req, res) => {
 
     const { id } = req.params;
 
     //Perform the delete
     const deletedUser = await Appointment.findByIdAndDelete(id);
 
-    if(!deletedUser){
+    if (!deletedUser) {
         throw new ApiError(404, "Appointment not found");
     }
 
     return res.status(200).json(
-        new ApiResponse(200, {}, "Appointment deleted successfully")
+        new ApiResponse(200, deletedUser, "Appointment deleted successfully")
+    )
+})
+
+//To get a Single Appointment By Id
+export const getAppointment = asyncHandler(async (req, res) => {
+
+    const { id } = req.params;
+
+    const appointment = await Appointment.findById(id);
+
+    if(!appointment){
+        throw new ApiError(404, "User not found");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(200, appointment, "Appointment fetched successfully")
     )
 })
