@@ -20,3 +20,10 @@
 -> deleteAppointment : DELETE /api/appointments/:id  ->  Useful for deleting the completed bookings.
 
 -> GetSingleAppointment : GET /api/appointments/:id -> For Fetching the particular appointment.
+
+
+##Frontend Setup
+
+-> npm create vite@latest  => for installing the latest version of vite
+
+-> npm intall react-router-dom => this allows navigation between the pages.
