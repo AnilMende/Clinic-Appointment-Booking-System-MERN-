@@ -5,12 +5,16 @@
 }
 
 .about-container{
+    width: 100%;
     max-width: 1200px;
     margin: auto;
+    padding: 0 20px;
 
     display: flex;
     align-items: center;
     gap: 40px;
+
+    flex-wrap: wrap;
 }
 
 .about-image{
@@ -20,6 +24,8 @@
 .about-image img{
     width: 100%;
     border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    cursor: pointer;
 }
 
 .about-text{

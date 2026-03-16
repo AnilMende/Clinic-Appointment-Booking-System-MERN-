@@ -4,7 +4,7 @@ import "./AboutHijama.css";
 
 const AboutHijama = () => {
     return (
-        <div className="about">
+        <div id="about" className="about">
 
             <div className="about-container">
 

@@ -1,7 +1,5 @@
 
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
 import MenuIcon from '@mui/icons-material/Menu';
 
 
@@ -11,32 +9,49 @@ const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
 
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+    }
+
     return (
         <nav className="navbar">
 
             <div className="navbar-container">
 
+                {/* Logo */}
                 <div className="logo">
-                    <p>HijamaCare</p>
+                    <a href="#home">
+                        <img src="/clinic-logo.png" alt="Clinic logo" />
+                    </a>
                 </div>
 
-                {/* Desktop Menu */}
-                <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                    <li><Link to="/services">Services</Link></li>
-                    <li><Link to="/contact">Contact</Link></li>
+                {/* Navigation Links */}
+                <ul className={menuOpen ? "nav-links active" : "nav-links"}>
+                    
+                    <li>
+                        <a href="#home">Home</a>
+                    </li>
 
                     <li>
-                        <Link to="/book-session" className="book-btn">
-                            Book Session
-                        </Link>
+                        <a href="#about">About</a>
+                    </li>
+
+                    <li>
+                        <a href="#services">Services</a>
+                    </li>
+
+                    <li>
+                        <a href="#book-session">Book Session</a>
+                    </li>
+
+                    <li>
+                        <a href="#contact">Contact</a>
                     </li>
 
                 </ul>
 
-                {/* Mobile Menu */}
-                <div className="menu-icon" onClick={() => setMenuOpen(!menuOpen)}>
+                {/* Mobile Menu Button*/}
+                <div className="menu-icon" onClick={toggleMenu}>
                     <MenuIcon/>
                 </div>
 

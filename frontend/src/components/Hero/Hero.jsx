@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
     return (
-        <div className="hero">
+        <div id="home" className="hero">
 
             <div className="hero-container">
 
@@ -32,9 +32,9 @@ const Hero = () => {
                     </div>
 
                     {/* Adding Book-Session Button */}
-                    <Link to="/book-session" className="hero-btn">
+                    <a href="#booking-form" className="hero-btn">
                         Book Your Session
-                    </Link>
+                    </a>
                 </div>
 
                 {/* Image on Left Side */}
