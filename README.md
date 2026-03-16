@@ -32,3 +32,21 @@
 -> By this we can see the entire frontend. With help of Book-Session Page we can book a new appointment by connecting it with the API from the backend.
 
 -> onChange event is to change the values of the form data, onSubmit is to submit the form. After successfull submission the appointment data will get stored in the database.
+
+-> Start backend server
+
+-> Start React frontend
+
+-> Open website
+
+-> Fill booking form
+
+-> Click Book Appointment Button
+
+==> Expected result:
+
+-> Appointment stored in MongoDB
+
+-> API returns success message
+
+-> Form resets
