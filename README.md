@@ -50,3 +50,9 @@
 -> API returns success message
 
 -> Form resets
+
+-> Implemented Scroll navigation, Sticky navbar, Active section highlighting, Smooth Scrolling, Responsive navbar.
+
+-> Booking Form connected to backend.
+
+-> Added Date Validation to avoid booking on the past dates.
