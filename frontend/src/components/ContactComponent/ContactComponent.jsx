@@ -1,8 +1,8 @@
 
 import React from "react";
-import "./Contact.css";
+import "./ContactComponent.css";
 
-const Contact = () => {
+const ContactComponent = () => {
     return(
         <div id="contact" className="contact">
 
@@ -38,4 +38,4 @@ const Contact = () => {
     )
 }
 
-export default Contact;
+export default ContactComponent;

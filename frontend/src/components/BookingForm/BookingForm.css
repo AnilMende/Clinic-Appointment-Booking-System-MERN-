@@ -43,3 +43,7 @@
 .booking-form button:hover{
     background-color: #1a5edb;
 }
+
+.booking{
+    scroll-margin-top: 90px;
+}

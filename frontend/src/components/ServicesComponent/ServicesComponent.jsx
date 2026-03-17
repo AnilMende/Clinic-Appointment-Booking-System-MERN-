@@ -1,8 +1,8 @@
 
 import React from "react";
-import "./Services.css";
+import "./ServicesComponent.css";
 
-const Services = () => {
+const ServicesComponent = () => {
 
     const services = [
         {
@@ -55,4 +55,4 @@ const Services = () => {
     )
 }
 
-export default Services;
+export default ServicesComponent;

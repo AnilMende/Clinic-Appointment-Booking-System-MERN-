@@ -67,6 +67,10 @@
     cursor: pointer;
 }
 
+.hero{
+    scroll-margin-top: 90px;
+}
+
 /* For Mobile Responsiveness */
 @media (max-width: 768px){
 

@@ -27,32 +27,19 @@ const Navbar = () => {
 
                 {/* Navigation Links */}
                 <ul className={menuOpen ? "nav-links active" : "nav-links"}>
-                    
-                    <li>
-                        <a href="#home">Home</a>
-                    </li>
 
-                    <li>
-                        <a href="#about">About</a>
-                    </li>
-
-                    <li>
-                        <a href="#services">Services</a>
-                    </li>
-
-                    <li>
-                        <a href="#book-session">Book Session</a>
-                    </li>
-
-                    <li>
-                        <a href="#contact">Contact</a>
-                    </li>
+                    <a href="#home" className="nav-link">Home</a>
+                    <a href="#about" className="nav-link">About</a>
+                    <a href="#benefits" className="nav-link">Benefits</a>
+                    <a href="#services" className="nav-link">Services</a>
+                    <a href="#booking-form" className="nav-link">Book Session</a>
+                    <a href="#contact" className="nav-link">Contact</a>
 
                 </ul>
 
                 {/* Mobile Menu Button*/}
                 <div className="menu-icon" onClick={toggleMenu}>
-                    <MenuIcon/>
+                    <MenuIcon />
                 </div>
 
             </div>

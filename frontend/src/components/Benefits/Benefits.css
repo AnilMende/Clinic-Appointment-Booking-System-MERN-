@@ -33,6 +33,10 @@
     cursor: pointer;
 }
 
+.benefit-card:hover{
+    background: rgb(251, 250, 250);
+}
+
 .benefit-card h3{
     margin-bottom: 10px;
 }
@@ -40,6 +44,10 @@
 .benefit-card p{
     font-size: 15px;
     line-height: 1.6;
+}
+
+.benefits{
+    scroll-margin-top: 90px;
 }
 
 /* Mobile Responsiveness */

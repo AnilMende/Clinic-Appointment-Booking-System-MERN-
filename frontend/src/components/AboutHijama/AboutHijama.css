@@ -43,6 +43,10 @@
     margin-bottom: 15px;
 }
 
+.about{
+    scroll-margin-top: 90px;
+}
+
 /* Mobile Responsiveness */
 @media (max-width : 768px){
 
