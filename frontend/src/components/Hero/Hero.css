@@ -56,6 +56,10 @@
     font-weight: 600;
 }
 
+.hero-btn:hover{
+    background: #59c75f;
+}
+
 .hero-image{
     flex: 1;
 }

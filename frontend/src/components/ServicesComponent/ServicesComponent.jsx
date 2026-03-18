@@ -50,6 +50,13 @@ const ServicesComponent = () => {
                         ))
                     }
                 </div>
+
+                <div className="services-info">
+                    <img src="/Lady-therapist.png" alt="Lady Therapist" />
+                    <p>Ladies Therapist Also Available</p>
+                </div>
+
+                <p className="services-bottom">Home Visit Also Available For Ladies and Gents</p>
             </div>
         </div>
     )
