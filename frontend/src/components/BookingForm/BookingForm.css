@@ -47,3 +47,13 @@
 .booking{
     scroll-margin-top: 90px;
 }
+
+.success-msg{
+    color: green;
+    margin-bottom: 10px;
+}
+
+.error-msg{
+    color: red;
+    margin-bottom: 10px;
+}

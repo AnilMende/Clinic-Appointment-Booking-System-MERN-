@@ -1,8 +1,13 @@
 
 import React, { useState } from "react";
 import "./BookingForm.css";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const BookingForm = () => {
+
+    //when the reponse is submitting the button will be in loading state i.e.. Booking
+    const [loading, setLoading] = useState(false);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -23,32 +28,30 @@ const BookingForm = () => {
 
         try {
 
-            const response = await fetch("http://localhost:5000/api/appointments", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(formData)
+            setLoading(true);
+
+            const response = await axios.post("http://localhost:5000/api/appointments", formData);
+
+            const appointment = response.data.data;
+
+            toast.success(response.data.message, {
+                borderRadius : "8px",
+                background : "#333",
+                color : "#fff"
             });
 
-            const data = await response.json();
-
-            if (response.ok) {
-                alert("Appointment Booked Successfully");
-                setFormData({
-                    name: "",
-                    email: "",
-                    phone: "",
-                    date: ""
-                });
-
-            } else {
-                alert(data.message || "Something went wrong");
-            }
+            setFormData({
+                name : "",
+                email : "",
+                phone : "",
+                date : ""
+            });
 
         } catch (error) {
-            console.error(error);
-            alert("Server error");
+            toast.error(error?.response?.data?.message || "Something went wrong");
+        }
+        finally{
+            setLoading(false);
         }
     }
 
@@ -100,7 +103,9 @@ const BookingForm = () => {
                         required
                     />
 
-                    <button type="submit">Book Appointment</button>
+                    <button type="submit" disabled={loading}>
+                        {loading ? "Booking..." : "Book Appointment"}
+                    </button>
                 </form>
 
             </div>
