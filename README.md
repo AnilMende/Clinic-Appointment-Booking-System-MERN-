@@ -60,3 +60,9 @@
 -> Added additional changes to services page like availability of Lady therapist and home visit avialability.
 
 -> Fixed the styling of the pages in way that it will be mobile responsive. Based on the screen sizes.
+
+-> Right now, a user can click Submit multiple times, which can create duplicate bookings in our database. So to prevent double submission added Loading State.
+
+-> Replaced alert() with proper UI Messages using the Toast Notification and the library react-hot-toast.
+
+-> npm install react-hot-toast. toast.success("message") for success messages, toast.error("error") for error messages.
