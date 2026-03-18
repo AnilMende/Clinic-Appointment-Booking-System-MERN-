@@ -56,3 +56,7 @@
 -> Booking Form connected to backend.
 
 -> Added Date Validation to avoid booking on the past dates.
+
+-> Added additional changes to services page like availability of Lady therapist and home visit avialability.
+
+-> Fixed the styling of the pages in way that it will be mobile responsive. Based on the screen sizes.
