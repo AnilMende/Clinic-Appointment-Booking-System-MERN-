@@ -66,3 +66,13 @@
 -> Replaced alert() with proper UI Messages using the Toast Notification and the library react-hot-toast.
 
 -> npm install react-hot-toast. toast.success("message") for success messages, toast.error("error") for error messages.
+
+==> Admin Dashboard:
+
+-> npm create vite@latest admin
+
+-> npm install axios react-hot-toast
+
+-> we are building admin dashboard to see all latest bookings, view all appointments, Update appointment status (Pending -> Confirmed -> Completed)
+
+-> And to delete Invalid or Spam bookings.
