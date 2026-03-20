@@ -76,3 +76,23 @@
 -> we are building admin dashboard to see all latest bookings, view all appointments, Update appointment status (Pending -> Confirmed -> Completed)
 
 -> And to delete Invalid or Spam bookings.
+
+-> Added Dashboard to display the Name, Phone, Date , and Status of the appointment for the admin.
+
+-> By using this admin will be able to delete the appointment , can change the status of the appointment to Completed or Cancelled or Confirmed.
+
+-> Created a table of appointments to display based on the Date they booked on.
+
+==> Admin Register and Login:
+
+-> To make the admin dashboard only available to admin added register and login.
+
+-> The admin will access the admin dashboard by logging into the dashboard.
+
+-> Created separate admin Model, Controller, and routes, for the register and login.
+
+-> With the help of bcrypt the password is hashed during the register and password entered by the user is compared with the hashed password in the db during login.
+
+-> jsonwebtoken helps in creating a token in both register and login.
+
+-> created a Middleware for the routes like update-appointment, delete-appointment, get all appointments . The generated token shoould be used to verify the admin     and gives access to the next function in the route.
