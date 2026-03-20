@@ -1,10 +1,13 @@
 
 import React from "react";
+import Dashboard from "./pages/Dashboard.jsx";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return(
     <div>
-      Admin App
+      <Dashboard/>
+      <Toaster position="top-center"/>
     </div>
   )
 }

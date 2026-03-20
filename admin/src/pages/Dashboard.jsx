@@ -1,8 +1,121 @@
+import { useEffect, useState } from "react";
+import { deleteAppointment, getAppointments, updateAppointment } from "../api/appointment.js";
+
+import "./Dashboard.css";
+
+import toast from "react-hot-toast";
 
 const Dashboard = () => {
-    return(
-        <div>
-            Admin Dashboard
+
+    const [appointments, setAppointments] = useState([]);
+
+    //To get all the appointments
+    const fetchData = async () => {
+        try {
+            const res = await getAppointments();
+            //console.log(res.data);
+            //res.data gives the array which contains all the appointments as objects
+            //res.data.data gives all the appointment objects
+            setAppointments(res.data.data);
+        } catch (error) {
+            toast.error("Failed to fetch appointments")
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    //to update the status of the appointment
+    const handleStatusChange = async (id, status) => {
+        try {
+            await updateAppointment(id, status);
+            toast.success("Status Updated");
+            fetchData();
+        } catch (error) {
+            toast.error("Update Failed");
+        }
+    }
+
+    //to delete a particular appointment
+    const handleDelete = async (id) => {
+        try {
+            await deleteAppointment(id);
+            toast.success("Deleted Successfully");
+            fetchData();
+        } catch (error) {
+            toast.error("Delete Failed");
+        }
+    };
+
+
+    return (
+        <div className="dashboard">
+
+            <h2 className="dashboard-title">Admin Dashboard</h2>
+
+            <div className="table-container">
+
+                <table className="appointment-table">
+
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {
+                            appointments.map((item) => {
+                                return (
+                                    <tr key={item._id}>
+
+                                        <td>{item.name}</td>
+
+                                        <td>{item.phone}</td>
+
+                                        <td>
+                                            {new Date(item.date).toLocaleDateString()}
+                                        </td>
+
+                                        <td>
+                                            <span className={`status ${item.status.toLowerCase()}`}>
+                                                {item.status}
+                                            </span>
+
+                                            <select value={item.status}
+                                                onChange={(e) => handleStatusChange(item._id, e.target.value)}
+                                            >
+                                                <option>Pending</option>
+                                                <option>Confirmed</option>
+                                                <option>Completed</option>
+                                                <option>Cancelled</option>
+                                            </select>
+                                        </td>
+
+                                        <td>
+                                            <button
+                                                className="delete-btn"
+                                                onClick={() => handleDelete(item._id)}
+                                            >
+                                                Delete
+                                            </button>
+                                        </td>
+
+
+                                    </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
         </div>
     )
 }

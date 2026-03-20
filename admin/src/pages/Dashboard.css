@@ -1,0 +1,102 @@
+
+.dashboard{
+    padding: 30px;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard-title{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.table-container{
+    overflow-x: auto;
+}
+
+.appointment-table{
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.appointment-table th{
+    background: #2c7be5;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+.appointment-table td{
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.appointment-table tr:hover{
+    background: #f5f8ff;
+}
+
+/* Status Badges */
+.status{
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.status.pending{
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status.confirmed{
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status.completed{
+    background: #d4edda;
+    color: #155724;
+}
+
+.status.cancelled{
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* Select Dropdown */
+select{
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* Delete Button */
+.delete-btn{
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.delete-btn:hover{
+    background: #c0392b;
+}
+
+/* Mobile Responsiveness */
+@media (max-width : 768px){
+
+    .appointment-table th, 
+    .appointment-table td{
+        padding: 6px;
+        font-size: 12px;
+    }
+
+    .status{
+        display: block;
+        margin-bottom: 5px;
+    }
+}
