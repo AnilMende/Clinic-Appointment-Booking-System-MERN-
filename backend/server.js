@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 dotenv.config();
 import connectDB from "./config/db.js";
 import router from "./routes/appointmentRoutes.js";
+import adminRouter from "./routes/adminAuthRoutes.js";
 
 const app = express();
 
@@ -26,5 +27,6 @@ await connectDB();
 
 //Api Endpoints
 app.use("/api", router);
+app.use("/api/auth", adminRouter);
 
 app.listen(PORT, () => { console.log(`Server Started at PORT:${PORT}`)});
