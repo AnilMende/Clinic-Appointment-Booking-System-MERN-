@@ -1,0 +1,82 @@
+
+.auth-container{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f5f7fb;
+}
+
+/* Toggle Tabs */
+.auth-toggle{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.auth-toggle span{
+    padding-bottom: 5px;
+    color: #555;
+    transition: all 0.3s ease;
+}
+
+/* Active Tabs */
+.auth-toggle span.active{
+    color: #2c7be5;
+    font-weight: 600;
+    border-bottom: 2px solid #2c7be5;
+}
+
+.auth-container h2{
+    margin-bottom: 20px;
+}
+
+.auth-form{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    gap: 15px;
+}
+
+.auth-form input{
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.auth-form button{
+    padding: 12px;
+    background: #2c7be5;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.auth-form button:hover{
+    background: #1a5edb;
+}
+
+/* Redirect Text */
+.auth-redirect{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+}
+
+.auth-redirect a{
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+    transition: color 0.3s ease;
+}
+
+.auth-redirect a:hover{
+    color: #0056b3;
+    text-decoration: underline;
+}

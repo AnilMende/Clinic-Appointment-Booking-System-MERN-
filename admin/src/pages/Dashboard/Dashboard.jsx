@@ -1,5 +1,7 @@
+import React from "react";
+
 import { useEffect, useState } from "react";
-import { deleteAppointment, getAppointments, updateAppointment } from "../api/appointment.js";
+import { deleteAppointment, getAppointments, updateAppointment } from "../../api/appointment.js";
 
 import "./Dashboard.css";
 
@@ -49,8 +51,16 @@ const Dashboard = () => {
     };
 
 
+    //to handle logout
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        window.location.href = "/login";
+    }
+
     return (
         <div className="dashboard">
+
+            <button onClick={handleLogout} className="logout-btn">Logout</button>
 
             <h2 className="dashboard-title">Admin Dashboard</h2>
 
