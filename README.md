@@ -96,3 +96,11 @@
 -> jsonwebtoken helps in creating a token in both register and login.
 
 -> created a Middleware for the routes like update-appointment, delete-appointment, get all appointments . The generated token shoould be used to verify the admin     and gives access to the next function in the route.
+
+-> Added styling to both register and login pages, In addition to that added username in register controller.
+
+-> Stored token in the localStorage, to logout the admin we can clear the token from the localStorage using the removeItem("token").
+
+-> If the user clicks on the logout then the token is removed from the localStorage then user gets logged out.
+
+-> When the Admin logs in then admin can will be able to see the appointments and can update and delete the appointment.
