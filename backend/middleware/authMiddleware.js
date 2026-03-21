@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-export const authMiddleware = async (req, res) => {
+export const authMiddleware = async (req, res, next) => {
 
     let token ;
 
@@ -10,10 +10,10 @@ export const authMiddleware = async (req, res) => {
         try {
             
             const decoded = jwt.verify(token , process.env.JWT_SECRET)
-            req.adminId = decoded._id;
+            req.adminId = decoded.id;
             next();
         } catch (error) {
-            return res.status(201).json({ message : "Not Authorized"});
+            return res.status(401).json({ message : "Not Authorized"});
         }
     }
 

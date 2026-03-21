@@ -1,4 +1,4 @@
-import Admin from "../models/Admin";
+import Admin from "../models/Admin.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -12,7 +12,7 @@ const generateToken = (id) => {
 
 
 export const registerAdmin = async (req, res) => {
-    const { email, password } = req.body;
+    const { username, email, password } = req.body;
 
     const exists = await Admin.findOne({ email });
 
@@ -22,7 +22,7 @@ export const registerAdmin = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const admin = await Admin.create({ email, password: hashedPassword });
+    const admin = await Admin.create({ username, email, password: hashedPassword });
 
     res.status(200).json({
         message: "Admin registered",
