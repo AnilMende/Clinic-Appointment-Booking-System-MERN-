@@ -15,7 +15,7 @@ app.use(cors({
     methods : ["GET", "PUT", "POST", "DELETE"]
 }));
 
-
+//Status - checking
 app.get("/api/status", (req, res) => {
     res.send("Server is Working");
 })
