@@ -53,6 +53,8 @@
 .services-info p{
     font-size: 20px;
     margin-left: 5px;
+    color: red;
+    font-weight: bold;
 }
 
 .services-bottom{
