@@ -19,3 +19,5 @@ export const getAppointments = () => API.get("/admin/appointments");
 export const updateAppointment = (id, status) => API.put(`/admin/update-appointments/${id}`, {status});
 
 export const deleteAppointment = (id) => API.delete(`/admin/delete-appointment/${id}`);
+
+export const sendReminder = (id) => API.post(`/admin/remind/${id}`);

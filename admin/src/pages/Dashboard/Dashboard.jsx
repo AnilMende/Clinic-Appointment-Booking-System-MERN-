@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useEffect, useState } from "react";
-import { deleteAppointment, getAppointments, updateAppointment } from "../../api/appointment.js";
+import { deleteAppointment, getAppointments, sendReminder, updateAppointment } from "../../api/appointment.js";
 
 import "./Dashboard.css";
 
@@ -49,6 +49,17 @@ const Dashboard = () => {
             toast.error("Delete Failed");
         }
     };
+
+    //to handle remind the user by admin
+    const handleReminder = async (id) => {
+        try {
+            await sendReminder(id);
+            toast.success("Reminder sent");
+        } catch (error) {
+            toast.error("Failed to send remainder");
+        }
+    };
+
 
 
     //to handle logout
@@ -108,6 +119,15 @@ const Dashboard = () => {
                                         </td>
 
                                         <td>
+
+                                            {/* Remind button */}
+                                            <button
+                                                className="remind-btn"
+                                                onClick={() => handleReminder(item._id)}
+                                            >
+                                                Remind
+                                            </button>
+
                                             <button
                                                 className="delete-btn"
                                                 onClick={() => handleDelete(item._id)}
