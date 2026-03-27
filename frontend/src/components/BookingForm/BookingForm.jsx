@@ -12,8 +12,12 @@ const BookingForm = () => {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        service: "",
+        gender: "",
+        age: "",
         phone: "",
-        date: ""
+        date: "",
+        session: ""
 
     })
 
@@ -35,22 +39,26 @@ const BookingForm = () => {
             const appointment = response.data.data;
 
             toast.success(response.data.message, {
-                borderRadius : "8px",
-                background : "#333",
-                color : "#fff"
+                borderRadius: "8px",
+                background: "#333",
+                color: "#fff"
             });
 
             setFormData({
-                name : "",
-                email : "",
-                phone : "",
-                date : ""
+                name: "",
+                email: "",
+                service: "",
+                gender: "",
+                age: "",
+                phone: "",
+                date: "",
+                session: ""
             });
 
         } catch (error) {
             toast.error(error?.response?.data?.message || "Something went wrong");
         }
-        finally{
+        finally {
             setLoading(false);
         }
     }
@@ -85,6 +93,34 @@ const BookingForm = () => {
                         required
                     />
 
+                    <select name="service" value={formData.service} onChange={handleChange} required>
+                        <option value="">Select Service</option>
+                        <option>Dry Cupping</option>
+                        <option>Wet Cupping</option>
+                        <option>Fire Cupping</option>
+                        <option>Facial Cupping</option>
+                        <option>Massage Therapy</option>
+                        <option>Derma Planning</option>
+                    </select>
+
+                    <select name="gender" value={formData.gender} onChange={handleChange} required>
+                        <option value="">Select Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                        <option>Prefer not to say</option>
+                    </select>
+
+                    <input
+                        type="number"
+                        name="age"
+                        placeholder="Enter Age"
+                        value={formData.age}
+                        onChange={handleChange}
+                        min="1"
+                        max="100"
+                        required
+                    />
+
                     <input
                         type="tel"
                         name="phone"
@@ -103,9 +139,17 @@ const BookingForm = () => {
                         required
                     />
 
+                    <select name="session" value={formData.session} onChange={handleChange} required>
+                        <option value="">Select Session</option>
+                        <option>Morning</option>
+                        <option>Afternoon</option>
+                        <option>Evening</option>
+                    </select>
+
                     <button type="submit" disabled={loading}>
                         {loading ? "Booking..." : "Book Appointment"}
                     </button>
+
                 </form>
 
             </div>

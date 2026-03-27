@@ -23,7 +23,14 @@
 }
 
 .booking-form input{
-    padding: 12px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.booking-form select{
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
