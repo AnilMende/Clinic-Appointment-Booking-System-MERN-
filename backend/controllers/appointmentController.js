@@ -8,9 +8,9 @@ import { asyncHandler } from "../utils/AsyncHandler.js";
 export const createAppointment = asyncHandler(async (req, res) => {
 
     //Destruture only when the user provides
-    const { name, email, phone, date } = req.body;
+    const { name, email, service, gender, age, phone, date, session } = req.body;
 
-    if (!name || !email || !phone || !date) {
+    if (!name || !email || !service || !gender || !age || !phone || !date || !session ) {
         throw new ApiError(400, "All fields are required");
     }
 
@@ -28,7 +28,7 @@ export const createAppointment = asyncHandler(async (req, res) => {
 
     //creating the document
     const appointment = await Appointment.create({
-        name, email, phone, date
+        name, email, service, gender, age, phone, date, session
     });
 
     //return success

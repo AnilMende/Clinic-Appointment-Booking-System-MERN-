@@ -13,6 +13,23 @@ const appointmentSchema = new mongoose.Schema({
         lowercase: true,
         trim: true
     },
+    service: {
+        type : String,
+        required : true,
+        trim : true,
+        enum : ["Dry Cupping", "Wet Cupping", "Fire Cupping", "Facial Cupping", "Massage Therapy", "Derma Planning"]
+    },
+    gender : {
+        type : String,
+        enum : ["Male", "Female", "Prefer not to say"],
+        required : true
+    },
+    age : {
+        type : Number,
+        required : true,
+        min : [0, 'Age can not be negative'],
+        max : [100, "Please provide a valid age"]
+    },
     phone: {
         type: String,
         required: true,
@@ -22,6 +39,11 @@ const appointmentSchema = new mongoose.Schema({
     date: {
         type: Date,
         required: true
+    },
+    session : {
+        type : String,
+        required : true,
+        enum : ["Morning", "Afternoon", "Evening"]
     },
     status: {
         type: String,
