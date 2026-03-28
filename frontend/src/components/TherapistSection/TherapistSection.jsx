@@ -37,10 +37,12 @@ const TherapistSection = () => {
                         <img 
                         src="/Certificate-1.jpeg" 
                         alt="Certificate1"
+                        onClick={() => setSelectedImage("/Certificate-1.jpeg")}
                          />
                         <img 
                         src="/Certificate-2.jpeg" 
                         alt="Certificate2"
+                        onClick={() => setSelectedImage("/Certificate-2.jpeg")}
                          />
                     </div>
 
@@ -56,6 +58,14 @@ const TherapistSection = () => {
                 </div>
             </div>
 
+            {/* Image Modal */}
+            {
+                selectedImage && (
+                    <div className="image-modal" onClick={() => setSelectedImage(null)}>
+                        <img src={selectedImage} alt="Full-Certificate" />
+                    </div>
+                )
+            }
             
         </div>
     )
