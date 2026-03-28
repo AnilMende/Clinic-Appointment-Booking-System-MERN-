@@ -72,6 +72,12 @@ select{
     border-radius: 5px;
 }
 
+/* Buttons */
+.buttons{
+    display: flex;
+    gap: 10px;
+}
+
 /* Delete Button */
 .delete-btn{
     background: #e74c3c;
@@ -119,12 +125,23 @@ select{
 
     .appointment-table th, 
     .appointment-table td{
-        padding: 6px;
-        font-size: 12px;
+        padding: 5px;
+        font-size: 10px;
     }
 
     .status{
         display: block;
         margin-bottom: 5px;
+    }
+
+    .buttons{
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .buttons button{
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 14px;
     }
 }

@@ -6,6 +6,7 @@ import { deleteAppointment, getAppointments, sendReminder, updateAppointment } f
 import "./Dashboard.css";
 
 import toast from "react-hot-toast";
+import Modal from "../../components/Modal/Modal.jsx";
 
 const Dashboard = () => {
 
@@ -40,38 +41,108 @@ const Dashboard = () => {
     }
 
     //to delete a particular appointment
-    const handleDelete = async (id) => {
-        try {
-            await deleteAppointment(id);
-            toast.success("Deleted Successfully");
-            fetchData();
-        } catch (error) {
-            toast.error("Delete Failed");
-        }
-    };
+    // const handleDelete = async (id) => {
+    //     try {
+    //         await deleteAppointment(id);
+    //         toast.success("Deleted Successfully");
+    //         fetchData();
+    //     } catch (error) {
+    //         toast.error("Delete Failed");
+    //     }
+    // };
 
     //to handle remind the user by admin
-    const handleReminder = async (id) => {
-        try {
-            await sendReminder(id);
-            toast.success("Reminder sent");
-        } catch (error) {
-            toast.error("Failed to send remainder");
-        }
-    };
-
-
-
+    // const handleReminder = async (id) => {
+    //     try {
+    //         await sendReminder(id);
+    //         toast.success("Reminder sent");
+    //     } catch (error) {
+    //         toast.error("Failed to send remainder");
+    //     }
+    // };
     //to handle logout
-    const handleLogout = () => {
-        localStorage.removeItem("token");
-        window.location.href = "/login";
+    // const handleLogout = () => {
+    //     localStorage.removeItem("token");
+    //     window.location.href = "/login";
+    // }
+
+    // for the confirmations of remainder, deletion
+    const [modal, setModal] = useState({
+        isOpen: false,
+        type: "",
+        id: null
+    });
+
+    //for opening the modal
+    const openModal = (type, id = null) => {
+        setModal({ isOpen: true, type, id });
     }
+
+    //for closing the modal
+    const closeModal = () => {
+        setModal({ isOpen: false, type: "", id: null });
+    }
+
+    const getModalContent = () => {
+
+        switch (modal.type) {
+
+            case "remind":
+                return {
+                    title: "Send Reminder?",
+                    message: "Are you sure you want to send this remainder?"
+                };
+
+            case "delete":
+                return {
+                    title: "Delete Appointment?",
+                    message: "This action can not be done"
+                };
+
+            case "logout":
+                return {
+                    title: "Logout?",
+                    message: "Are you sure you want to logout?"
+                };
+
+            default:
+                return {};
+        }
+    }
+
+    const handleConfirm = async () => {
+        try {
+
+            if (modal.type === "remind") {
+                await sendReminder(modal.id);
+                toast.success("Reminder Sent");
+            }
+
+            if (modal.type === "delete") {
+                await deleteAppointment(modal.id);
+                toast.success("Deletion Successful");
+            }
+
+            if (modal.type === "logout") {
+                localStorage.removeItem("token");
+                window.location.href = "/auth";
+            }
+
+        } catch (error) {
+            toast.error("Action Failed");
+
+        } finally {
+            closeModal();
+        }
+    }
+
+    const { title, message } = getModalContent();
+
 
     return (
         <div className="dashboard">
 
-            <button onClick={handleLogout} className="logout-btn">Logout</button>
+            <button onClick={() => openModal("logout")} className="logout-btn">Logout</button>
 
             <h2 className="dashboard-title">Admin Dashboard</h2>
 
@@ -84,6 +155,7 @@ const Dashboard = () => {
                             <th>Name</th>
                             <th>Phone</th>
                             <th>Date</th>
+                            <th>Session</th>
                             <th>Status</th>
                             <th>Actions</th>
                         </tr>
@@ -104,6 +176,10 @@ const Dashboard = () => {
                                         </td>
 
                                         <td>
+                                            {item.session}
+                                        </td>
+
+                                        <td>
                                             <span className={`status ${item.status.toLowerCase()}`}>
                                                 {item.status}
                                             </span>
@@ -118,22 +194,24 @@ const Dashboard = () => {
                                             </select>
                                         </td>
 
-                                        <td>
+                                        <td className="buttons">
 
                                             {/* Remind button */}
                                             <button
                                                 className="remind-btn"
-                                                onClick={() => handleReminder(item._id)}
+                                                onClick={() => openModal("remind", item._id)}
                                             >
                                                 Remind
                                             </button>
 
+                                            {/* Delete button */}
                                             <button
                                                 className="delete-btn"
-                                                onClick={() => handleDelete(item._id)}
+                                                onClick={() => openModal("delete", item._id)}
                                             >
                                                 Delete
                                             </button>
+
                                         </td>
 
 
@@ -146,6 +224,14 @@ const Dashboard = () => {
                 </table>
 
             </div>
+
+            <Modal
+                isOpen={modal.isOpen}
+                title={title}
+                message={message}
+                onConfirm={handleConfirm}
+                onCancel={closeModal}
+            />
         </div>
     )
 }
