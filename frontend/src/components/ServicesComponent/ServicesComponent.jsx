@@ -23,11 +23,11 @@ const ServicesComponent = () => {
         },
         {
             title: "MASSAGE THERAPY",
-            description: "Removes toxins from the body and improves overall health."
+            description: " Is a form of manual therapy that involves the systematic manipulation of the body's soft tissues."
         },
         {
             title: "DERMA PLANNING",
-            description: "Removes toxins from the body and improves overall health."
+            description: "It is frequently used to improve skin texture, reduce the appearance of fine lines and acne scars."
         }
     ];
     return (

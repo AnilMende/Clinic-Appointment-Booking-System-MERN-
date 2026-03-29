@@ -20,8 +20,25 @@
     align-items: center;
 }
 
-.logo img{
-    height: 50px;
+.logo {
+  
+  width: 90px; 
+  height: 90px;
+  
+  border-radius: 50%;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  
+  cursor: pointer;
+} 
+
+.logo img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .nav-links{

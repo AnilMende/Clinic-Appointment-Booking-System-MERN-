@@ -21,6 +21,12 @@ const Hero = () => {
                         in your body with expert care.
                     </p>
 
+                    <div className="hero-quote">
+                        <p>
+                            Hijama The Only Therapy Which Treats MIND BODY SOUL
+                        </p>
+                    </div>
+
                     {/* Trust Indicators */}
 
                     <div className="hero-trust">
@@ -28,7 +34,7 @@ const Hero = () => {
                         <span>✔ Safe & Hygienic Procedure</span>
                         <span>✔ Experienced Practitioner</span>
                         <span>✔ Trusted Therapy</span>
-                        
+
                     </div>
 
                     {/* Adding Book-Session Button */}
