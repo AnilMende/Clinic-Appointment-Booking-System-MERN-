@@ -1,19 +1,24 @@
-
-.dashboard{
+.dashboard {
     padding: 30px;
     font-family: Arial, sans-serif;
 }
 
-.dashboard-title{
+.dashboard-title {
     text-align: center;
     margin-bottom: 20px;
 }
 
-.table-container{
+/* Default show table hide card */
+
+.table-container {
+    display: block;
+}
+
+.table-container {
     overflow-x: auto;
 }
 
-.appointment-table{
+.appointment-table {
     width: 100%;
     border-collapse: collapse;
     background: white;
@@ -21,24 +26,24 @@
     overflow: hidden;
 }
 
-.appointment-table th{
+.appointment-table th {
     background: #2c7be5;
     color: white;
     padding: 12px;
     text-align: left;
 }
 
-.appointment-table td{
+.appointment-table td {
     padding: 12px;
     border-bottom: 1px solid #eee;
 }
 
-.appointment-table tr:hover{
+.appointment-table tr:hover {
     background: #f5f8ff;
 }
 
 /* Status Badges */
-.status{
+.status {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 5px;
@@ -46,40 +51,40 @@
     margin-right: 10px;
 }
 
-.status.pending{
+.status.pending {
     background: #fff3cd;
     color: #856404;
 }
 
-.status.confirmed{
+.status.confirmed {
     background: #cce5ff;
     color: #004085;
 }
 
-.status.completed{
+.status.completed {
     background: #d4edda;
     color: #155724;
 }
 
-.status.cancelled{
+.status.cancelled {
     background: #f8d7da;
     color: #721c24;
 }
 
 /* Select Dropdown */
-select{
+select {
     padding: 5px;
     border-radius: 5px;
 }
 
 /* Buttons */
-.buttons{
+.buttons {
     display: flex;
     gap: 10px;
 }
 
 /* Delete Button */
-.delete-btn{
+.delete-btn {
     background: #e74c3c;
     color: white;
     border: none;
@@ -88,12 +93,12 @@ select{
     cursor: pointer;
 }
 
-.delete-btn:hover{
+.delete-btn:hover {
     background: #c0392b;
 }
 
 /* Remind Button */
-.remind-btn{
+.remind-btn {
     background: #2c7be5;
     color: white;
     border: none;
@@ -103,8 +108,12 @@ select{
     cursor: pointer;
 }
 
+.remind-btn:hover{
+    background: #1e65c1;
+}
+
 /* Logout button */
-.logout-btn{
+.logout-btn {
     position: absolute;
     top: 20px;
     right: 20px;
@@ -116,32 +125,94 @@ select{
     cursor: pointer;
 }
 
-.logout-btn:hover{
+.logout-btn:hover {
     background: #c0392b;
 }
 
+/* for card view for mobile */
+.card-view {
+    display: none;
+}
+
 /* Mobile Responsiveness */
-@media (max-width : 768px){
+@media (max-width : 768px) {
 
-    .appointment-table th, 
-    .appointment-table td{
-        padding: 5px;
-        font-size: 10px;
+    .table-container {
+        display: none;
     }
 
-    .status{
+    .card-view {
         display: block;
-        margin-bottom: 5px;
     }
 
-    .buttons{
-        flex-direction: column;
+    .appointment-card {
+        background: #fff;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* hover property to each card */
+    .appointment-card:hover {
+        transform: translateY(-4px) scale(1.01);
+    }
+
+    .appointment-card p {
+        margin: 5px 0;
+    }
+
+    .card-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .card-actions button {
+        flex: 1;
+    }
+
+    .status-row {
+        display: flex;
+        align-items: center;
         gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 5px;
     }
 
-    .buttons button{
-        width: 100%;
-        padding: 6px 10px;
-        font-size: 14px;
+    /* Status badge */
+    .status-badge {
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    /* colors */
+    .status-badge.pending {
+        background: #fff3cd;
+        color: #856404;
+    }
+
+    .status-badge.confirmed {
+        background: #d4edda;
+        color: #155724;
+    }
+
+    .status-badge.completed {
+        background: #cce5ff;
+        color: #004085;
+    }
+
+    .status-badge.cancelled {
+        background: #f8d7da;
+        color: #721c24;
+    }
+
+    .status-select {
+        padding: 4px 6px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        font-size: 12px;
     }
 }

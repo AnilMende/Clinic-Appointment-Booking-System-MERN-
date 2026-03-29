@@ -225,6 +225,60 @@ const Dashboard = () => {
 
             </div>
 
+            {/* For Mobile View We are adding card view for the Dashboard */}
+            <div className="card-view">
+                {
+                    appointments.map((item) => (
+                        <div className="appointment-card" key={item._id}>
+                            <p><strong>Name:</strong> {item.name}</p>
+                            <p><strong>Phone:</strong> {item.phone}</p>
+                            <p><strong>Date:</strong> {new Date(item.date).toLocaleDateString()}</p>
+                            <p><strong>Session:</strong> {item.session}</p>
+
+                            <p className="status-row">
+
+                                <strong>Status:</strong>
+
+                                {/* Status Badge: */}
+                                <span className={`status-badge ${item.status.toLowerCase()}`}>
+                                    {item.status}
+                                </span>
+
+                                {/* Dropdown */}
+                                <select className="status-select"
+                                    value={item.status}
+                                    onChange={(e) => handleStatusChange(item._id, e.target.value)}
+                                >
+                                    <option>Pending</option>
+                                    <option>Confirmed</option>
+                                    <option>Completed</option>
+                                    <option>Cancelled</option>
+
+                                </select>
+                            </p>
+
+                            <div className="card-actions">
+
+                                <button
+                                    className="remind-btn"
+                                    onClick={() => openModal("remind", item._id)}
+                                >
+                                    Remind
+                                </button>
+
+                                <button
+                                    className="delete-btn"
+                                    onClick={() => openModal("delete", item._id)}
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+
             <Modal
                 isOpen={modal.isOpen}
                 title={title}
