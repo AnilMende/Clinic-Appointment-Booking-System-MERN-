@@ -134,6 +134,29 @@ select {
     display: none;
 }
 
+/* Search + Filter  */
+
+.dashboard-controls{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* input */
+.dashboard-controls input{
+    flex: 1;
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* select */
+.dashboard-controls select{
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
 /* Mobile Responsiveness */
 @media (max-width : 768px) {
 
@@ -214,5 +237,10 @@ select {
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 12px;
+    }
+
+    /* select + Filter */
+    .dashboard-controls{
+        flex-direction: column;
     }
 }

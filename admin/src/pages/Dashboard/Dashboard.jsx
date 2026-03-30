@@ -138,6 +138,23 @@ const Dashboard = () => {
 
     const { title, message } = getModalContent();
 
+    // Search + Filter
+    const [searchTerm, setSearchTerm] = useState("");
+    const [filterStatus, setFilterStatus] = useState("All");
+
+    // Filter Logic
+    const filteredAppointments = appointments.filter((item) => {
+
+        // search based on name, comparing the names in appointments with the name entered
+        const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+        // when searches based on the status
+        //if filterStatus is All, then all the appointments are fetched otherwise the 
+        //the status that searched and that particular appointments with status are fetched
+        const matchesStatus = filterStatus === "All" || item.status === filterStatus;
+
+        return matchesSearch && matchesStatus;
+    })
 
     return (
         <div className="dashboard">
@@ -145,6 +162,34 @@ const Dashboard = () => {
             <button onClick={() => openModal("logout")} className="logout-btn">Logout</button>
 
             <h2 className="dashboard-title">Admin Dashboard</h2>
+
+            {/* Search + Filter */}
+
+            <div className="dashboard-controls">
+
+                {/* Search */}
+                <input
+                    type="text"
+                    placeholder="Search by name"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                />
+
+                {/* Filter */}
+                <select
+                    value={filterStatus}
+                    onChange={(e) => setFilterStatus(e.target.value)}
+                >
+                    <option value="All">All</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+
+
+            {/* For Desktop view */}
 
             <div className="table-container">
 
@@ -163,7 +208,7 @@ const Dashboard = () => {
 
                     <tbody>
                         {
-                            appointments.map((item) => {
+                            filteredAppointments.map((item) => {
                                 return (
                                     <tr key={item._id}>
 
@@ -228,7 +273,7 @@ const Dashboard = () => {
             {/* For Mobile View We are adding card view for the Dashboard */}
             <div className="card-view">
                 {
-                    appointments.map((item) => (
+                    filteredAppointments.map((item) => (
                         <div className="appointment-card" key={item._id}>
                             <p><strong>Name:</strong> {item.name}</p>
                             <p><strong>Phone:</strong> {item.phone}</p>
