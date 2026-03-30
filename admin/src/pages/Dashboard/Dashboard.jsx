@@ -161,7 +161,10 @@ const Dashboard = () => {
 
             <button onClick={() => openModal("logout")} className="logout-btn">Logout</button>
 
-            <h2 className="dashboard-title">Admin Dashboard</h2>
+            <div className="dashboard-main">
+                <img src="/clinic-logo.png" alt="clinic-logo" />
+                <h2 className="dashboard-title">Admin Dashboard</h2>
+            </div>
 
             {/* Search + Filter */}
 
@@ -198,6 +201,7 @@ const Dashboard = () => {
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Age</th>
                             <th>Phone</th>
                             <th>Date</th>
                             <th>Session</th>
@@ -213,6 +217,8 @@ const Dashboard = () => {
                                     <tr key={item._id}>
 
                                         <td>{item.name}</td>
+
+                                        <td>{item.age}</td>
 
                                         <td>{item.phone}</td>
 
@@ -276,6 +282,7 @@ const Dashboard = () => {
                     filteredAppointments.map((item) => (
                         <div className="appointment-card" key={item._id}>
                             <p><strong>Name:</strong> {item.name}</p>
+                            <p><strong>Age:</strong> {item.age}</p>
                             <p><strong>Phone:</strong> {item.phone}</p>
                             <p><strong>Date:</strong> {new Date(item.date).toLocaleDateString()}</p>
                             <p><strong>Session:</strong> {item.session}</p>
