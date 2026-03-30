@@ -16,7 +16,7 @@ const TherapistSection = () => {
 
                 <div className="therapist-content">
 
-                    <h2>Ashraf Ahmed</h2>
+                    <h2>Ashfaq Ahmed</h2>
 
                     <p className="bio">
                         Certified Hijama therapist with expertise in traditional cupping
