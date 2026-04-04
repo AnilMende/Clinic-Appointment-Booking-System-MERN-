@@ -125,7 +125,7 @@ const Dashboard = () => {
 
             if (modal.type === "logout") {
                 localStorage.removeItem("token");
-                window.location.href = "/auth";
+                window.location.href = "/login";
             }
 
         } catch (error) {
