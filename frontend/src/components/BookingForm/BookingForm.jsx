@@ -7,7 +7,7 @@ import toast from "react-hot-toast";
 const BookingForm = () => {
 
     //const base_url = "http://localhost:5000/api";
-    const base_url = "https://appointment-booking-backend-dybo.onrender.com/api"
+    const base_url = "https://appointment-booking-backend-g5qx.onrender.com/api"
 
     //when the reponse is submitting the button will be in loading state i.e.. Booking
     const [loading, setLoading] = useState(false);
