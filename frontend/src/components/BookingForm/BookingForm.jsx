@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 
 const BookingForm = () => {
 
+    const base_url = "http://localhost:5000/api";
+
     //when the reponse is submitting the button will be in loading state i.e.. Booking
     const [loading, setLoading] = useState(false);
 
@@ -34,7 +36,7 @@ const BookingForm = () => {
 
             setLoading(true);
 
-            const response = await axios.post("http://localhost:5000/api/appointments", formData);
+            const response = await axios.post(`${base_url}/appointments`, formData);
 
             const appointment = response.data.data;
 
