@@ -7,7 +7,7 @@ const ServicesComponent = () => {
     const services = [
         {
             title: "DRY CUPPING",
-            description: "Traditional cupping therapy to detoxify the body and improve blood circulation."
+            description: "Traditional cupping therapy to detoxify the body and improve blood circulation.",
         },
         {
             title: "WET CUPPING",
@@ -41,7 +41,7 @@ const ServicesComponent = () => {
                     {
                         services.map((service, index) => (
                             <div key={index} className="service-card">
-
+                                
                                 <h3>{service.title}</h3>
 
                                 <p>{service.description}</p>
