@@ -7,13 +7,15 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
 
+    const backend_url = "https://clinic-appointment-backend-8545.onrender.com/api"
+
     const [form, setForm] = useState({ username: "", email: "", password: "" });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         try {
-            const res = await axios.post("http://localhost:5000/api/auth/register", form);
+            const res = await axios.post(`${backend_url}/auth/register`, form);
 
             localStorage.setItem("token", res.data.token);
 
