@@ -35,18 +35,18 @@ export const createAppointment = asyncHandler(async (req, res) => {
     console.log("Saved to DB");
 
     //send the email about the appointment to the admin
-    // await sendEmail({
-    //     to: process.env.ADMIN_EMAIL,
-    //     subject: "New Appointment Booked",
-    //     text: `New Appointment : 
-    //     Name : ${name}
-    //     Email : ${email}
-    //     Phone : ${phone}
-    //     Service : ${service}
-    //     Date : ${date}
-    //     Session : ${session}
-    //     `
-    // })
+    await sendEmail({
+        to: process.env.ADMIN_EMAIL,
+        subject: "New Appointment Booked",
+        text: `New Appointment : 
+        Name : ${name}
+        Email : ${email}
+        Phone : ${phone}
+        Service : ${service}
+        Date : ${date}
+        Session : ${session}
+        `
+    })
 
     //return success
     return res.status(201).json(
