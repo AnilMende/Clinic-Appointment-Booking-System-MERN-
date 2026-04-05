@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-    baseURL : "https://appointment-booking-backend-g5qx.onrender.com/api"
+    baseURL : "https://clinic-appointment-backend-8545.onrender.com/api"
 })
 
 API.interceptors.request.use((req) => {
