@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const Register = () => {
 
-    const backend_url = "https://clinic-appointment-backend-8545.onrender.com/api"
+    const backend_url = "http://localhost:5000/api";
 
     const [form, setForm] = useState({ username: "", email: "", password: "" });
 
