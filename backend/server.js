@@ -12,8 +12,9 @@ app.use(express.json());
 
 app.use(cors({
     origin : "*",
-    methods : ["GET", "PUT", "POST", "DELETE"]
+    methods : ["GET", "POST", "PUT", "DELETE", "PATCH"]
 }));
+
 
 //Status - checking
 app.get("/api/status", (req, res) => {
@@ -29,4 +30,4 @@ await connectDB();
 app.use("/api", router);
 app.use("/api/auth", adminRouter);
 
-app.listen(PORT, () => { console.log(`Server Started at PORT:${PORT}`)});
+app.listen(PORT, () => { console.log(`Server Started at PORT:${PORT}`) });

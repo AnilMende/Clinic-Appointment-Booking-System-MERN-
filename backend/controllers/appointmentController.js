@@ -3,6 +3,8 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/AsyncHandler.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import dotenv from "dotenv";
+dotenv.config();
 
 
 //Create Appointment
@@ -34,6 +36,9 @@ export const createAppointment = asyncHandler(async (req, res) => {
 
     console.log("Saved to DB");
 
+    // Formatting date for user readiblity
+    const formattedDate = new Date(date).toDateString();
+
     //send the email about the appointment to the admin
     await sendEmail({
         to: process.env.ADMIN_EMAIL,
@@ -43,15 +48,18 @@ export const createAppointment = asyncHandler(async (req, res) => {
         Email : ${email}
         Phone : ${phone}
         Service : ${service}
-        Date : ${date}
+        Date : ${formattedDate}
         Session : ${session}
         `
+    }).catch(error => {
+        console.error("Email failed", error.message);
     })
 
     //return success
     return res.status(201).json(
         new ApiResponse(201, appointment, "Appointment booked successfully")
     )
+
 })
 
 
@@ -130,6 +138,7 @@ export const getAppointment = asyncHandler(async (req, res) => {
     )
 })
 
+
 //Remind User About the Appointment By Admin
 export const sendReminder = asyncHandler(async (req, res) => {
 
@@ -137,35 +146,47 @@ export const sendReminder = asyncHandler(async (req, res) => {
     const { id } = req.params;
 
     //find the appointment with that id
-    const appointment = await Appointment.findById( id );
+    const appointment = await Appointment.findById(id);
 
     //if the appointment is not avialable
-    if(!appointment){
+    if (!appointment) {
         throw new ApiError(404, "Appointment nor found");
     }
 
+    const formattedDate = new Date(appointment.date).toDateString();
+
     //then send the email
     //take the details from the appointment
-    await sendEmail({
-        to : appointment.email,
-        subject : "Appointment Reminder",
-        text : `
+    //send email on the background
+    try {
+        await sendEmail({
+            to: appointment.email,
+            subject: "Appointment Reminder - Action required",
+            text: `
         Hello : ${appointment.name},
         
-        Your appointment is scheduled: 
+        This is a reminder about your upcoming appointment:
 
         Service : ${appointment.service}
-        Date : ${appointment.date}
+        Date : ${formattedDate}
         session : ${appointment.session}
 
 
-        Please be available.
+        Please make sure to be available at the scheduled time.
 
-        Thank you.
+        Thank you,
+        Clinic Team
         `
-    });
+        })
 
-    return res.status(200).json({
-        message : "Reminder sent Successfully"
-    });
+    } catch (err) {
+        console.error("Reminder email failed:", err.message);
+        throw new ApiError(500, "Failed to send reminder email");
+    }
+
+    return res.status(200).json(
+        new ApiResponse(200, null, "Reminder sent successfully")
+    );
+
+
 })
