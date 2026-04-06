@@ -202,6 +202,7 @@ const Dashboard = () => {
                         <tr>
                             <th>Name</th>
                             <th>Age</th>
+                            <th>Service</th>
                             <th>Phone</th>
                             <th>Date</th>
                             <th>Session</th>
@@ -219,6 +220,8 @@ const Dashboard = () => {
                                         <td>{item.name}</td>
 
                                         <td>{item.age}</td>
+
+                                        <td>{item.service}</td>
 
                                         <td>{item.phone}</td>
 
@@ -283,6 +286,7 @@ const Dashboard = () => {
                         <div className="appointment-card" key={item._id}>
                             <p><strong>Name:</strong> {item.name}</p>
                             <p><strong>Age:</strong> {item.age}</p>
+                            <p><strong>Service:</strong> {item.service}</p>
                             <p><strong>Phone:</strong> {item.phone}</p>
                             <p><strong>Date:</strong> {new Date(item.date).toLocaleDateString()}</p>
                             <p><strong>Session:</strong> {item.session}</p>
