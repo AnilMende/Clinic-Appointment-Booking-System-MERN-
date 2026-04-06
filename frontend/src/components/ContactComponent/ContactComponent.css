@@ -25,7 +25,7 @@
 
 .contact-card{
     background: #f9f9f9;
-    padding: 25px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
     cursor: pointer;
@@ -52,7 +52,6 @@
 .contact-card p{
     font-size: 15px;
     color: #555;
-    line-height: 1.6;
 }
 
 /* Adding hover to contact-card */
