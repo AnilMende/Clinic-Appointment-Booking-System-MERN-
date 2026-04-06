@@ -3,8 +3,6 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { asyncHandler } from "../utils/AsyncHandler.js";
 import { sendEmail } from "../utils/sendEmail.js";
-import dotenv from "dotenv";
-dotenv.config();
 
 
 //Create Appointment
