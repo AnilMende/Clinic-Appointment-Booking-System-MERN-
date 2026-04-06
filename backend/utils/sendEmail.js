@@ -1,34 +1,28 @@
-import nodemailer from 'nodemailer';
+import * as Brevo from '@getbrevo/brevo';
 
+const apiInstance = new Brevo.TransactionalEmailsApi();
+apiInstance.authentications['apiKey'].apiKey = process.env.BREVO_API_KEY;
 
 export const sendEmail = async ({ to, subject, text }) => {
-    const transporter = nodemailer.createTransport({
-        host: 'smtp-relay.brevo.com',
-        port: 587,
-        secure: false,
-        auth: {
-            user: process.env.BREVO_USER,   // a73c1f001@smtp-brevo.com
-            pass: process.env.BREVO_PASS    // your full SMTP key
-        }
-    });
-
     try {
-        await transporter.verify();
-        console.log("SMTP connection verified ✓");
+        const sendSmtpEmail = new Brevo.SendSmtpEmail();
 
-        const info = await transporter.sendMail({
-            from: `"Clinic" <${process.env.BREVO_USER}>`,
-            to,
-            subject,
-            text
-        });
+        sendSmtpEmail.sender = {
+            name: "Clinic",
+            email: process.env.ADMIN_EMAIL
+        };
+        sendSmtpEmail.to = [{ email: to }];
+        sendSmtpEmail.subject = subject;
+        sendSmtpEmail.textContent = text;
 
-        console.log("Email sent:", info.messageId);
-        return info;
+        const result = await apiInstance.sendTransacEmail(sendSmtpEmail);
+        console.log("Email sent successfully. ID:", result.messageId);
+        return result;
 
     } catch (error) {
         console.error("Email error:", error.message);
         throw error;
     }
 };
+
 
