@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import "./BookingForm.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const BookingForm = () => {
 
@@ -78,26 +80,34 @@ const BookingForm = () => {
 
                 <form onSubmit={handleSubmit} className="booking-form">
 
+                    <label>Full Name</label>
                     <input
                         type="text"
-                        placeholder="Full Name"
                         name="name"
+                        placeholder="Enter your full name"
                         value={formData.name}
                         onChange={handleChange}
                         required
                     />
 
+                    <label>Email Address</label>
                     <input
                         type="email"
                         name="email"
-                        placeholder="Email Address"
+                        placeholder="Enter your email"
                         value={formData.email}
                         onChange={handleChange}
                         required
                     />
 
-                    <select name="service" value={formData.service} onChange={handleChange} required>
-                        <option value="">Select Service</option>
+                    <label>Select Service</label>
+                    <select
+                        name="service"
+                        value={formData.service}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Select Service</option>
                         <option>Dry Cupping</option>
                         <option>Wet Cupping</option>
                         <option>Fire Cupping</option>
@@ -106,17 +116,25 @@ const BookingForm = () => {
                         <option>Derma Planning</option>
                     </select>
 
-                    <select name="gender" value={formData.gender} onChange={handleChange} required>
-                        <option value="">Select Gender</option>
+
+                    <label>Select Gender</label>
+                    <select
+                        name="gender"
+                        value={formData.gender}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Select Gender</option>
                         <option>Male</option>
                         <option>Female</option>
                         <option>Prefer not to say</option>
                     </select>
 
+                    <label>Age</label>
                     <input
                         type="number"
                         name="age"
-                        placeholder="Enter Age"
+                        placeholder="Enter your age"
                         value={formData.age}
                         onChange={handleChange}
                         min="1"
@@ -124,26 +142,40 @@ const BookingForm = () => {
                         required
                     />
 
+                    <label>Phone Number</label>
                     <input
                         type="tel"
                         name="phone"
-                        placeholder="Phone Number"
+                        placeholder="Enter your phone number"
                         value={formData.phone}
                         onChange={handleChange}
                         required
                     />
 
-                    <input
-                        type="date"
-                        name="date"
-                        value={formData.date}
-                        onChange={handleChange}
-                        min={today}
-                        required
+                    {/* 🔥 Fixed Date Field */}
+                    <label>Select Appointment Date</label>
+
+                    <DatePicker
+                        selected={formData.date ? new Date(formData.date) : null}
+                        onChange={(date) =>
+                            setFormData({
+                                ...formData,
+                                date: date.toISOString().split("T")[0], // keeps backend format SAME
+                            })
+                        }
+                        minDate={new Date()}
+                        placeholderText="Choose a date"
+                        className="custom-date-picker"
                     />
 
-                    <select name="session" value={formData.session} onChange={handleChange} required>
-                        <option value="">Select Session</option>
+                    <label>Select Session</label>
+                    <select
+                        name="session"
+                        value={formData.session}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="" disabled>Select Session</option>
                         <option>Morning</option>
                         <option>Afternoon</option>
                         <option>Evening</option>
