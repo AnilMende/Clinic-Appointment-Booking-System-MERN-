@@ -11,7 +11,6 @@
     "server": "nodemon server.js"
   },
   "dependencies": {
-    "@getbrevo/brevo": "^5.0.3",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
@@ -19,6 +18,7 @@
     "mongoose": "^9.3.0",
     "nodemailer": "^8.0.4",
     "nodemon": "^3.1.14",
-    "resend": "^6.10.0"
+    "resend": "^6.10.0",
+    "sib-api-v3-sdk": "^8.5.0"
   }
 }
