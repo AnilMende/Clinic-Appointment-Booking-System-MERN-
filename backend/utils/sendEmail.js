@@ -2,28 +2,22 @@ import nodemailer from 'nodemailer';
 
 
 export const sendEmail = async ({ to, subject, text }) => {
-    
     const transporter = nodemailer.createTransport({
-        host: 'smtp.gmail.com',
-        port: 587,            // ✅ 587 instead of 465
-        secure: false,        // ✅ false for STARTTLS
+        host: 'smtp-relay.brevo.com',
+        port: 587,
+        secure: false,
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS   // ✅ Must be Gmail App Password
-        },
-        tls: {
-            rejectUnauthorized: false      // ✅ Helps on cloud environments
+            user: process.env.BREVO_USER,   // a73c1f001@smtp-brevo.com
+            pass: process.env.BREVO_PASS    // your full SMTP key
         }
     });
 
-
     try {
-        // ✅ Verify SMTP connection before sending
         await transporter.verify();
         console.log("SMTP connection verified ✓");
 
         const info = await transporter.sendMail({
-            from: `"Clinic" <${process.env.EMAIL_USER}>`,
+            from: `"Clinic" <${process.env.BREVO_USER}>`,
             to,
             subject,
             text
@@ -37,3 +31,4 @@ export const sendEmail = async ({ to, subject, text }) => {
         throw error;
     }
 };
+
