@@ -1,10 +1,14 @@
 import dotenv from "dotenv";
-dotenv.config();
 import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import router from "./routes/appointmentRoutes.js";
 import adminRouter from "./routes/adminAuthRoutes.js";
+
+// ✅ Only load .env file in development, not in production
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 
 const app = express();
 
