@@ -43,6 +43,7 @@ export const createAppointment = asyncHandler(async (req, res) => {
         subject: "New Appointment Booked",
         text: `New Appointment : 
         Name : ${name}
+        Age : ${age}
         Email : ${email}
         Phone : ${phone}
         Service : ${service}
