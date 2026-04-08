@@ -156,15 +156,27 @@ const BookingForm = () => {
                     <label>Select Appointment Date</label>
 
                     <DatePicker
-                        selected={formData.date ? new Date(formData.date) : null}
-                        onChange={(date) =>
-                            setFormData({
-                                ...formData,
-                                date: date.toISOString().split("T")[0], // keeps backend format SAME
-                            })
+                        selected={formData.date ? new Date(formData.date + "T00:00:00") : null}
+                        onChange={(date) => {
+
+                            if (!date) {
+                                setFormData({
+                                    ...formData,
+                                    date: "",
+                                });
+                            } else {
+                                setFormData({
+                                    ...formData,
+                                    date: date.toISOString().split("T")[0], // keeps backend format SAME
+                                })
+                            }
+                        }
+
                         }
                         minDate={new Date()}
-                        placeholderText="Choose a date"
+                        dateFormat="dd/MM/yyyy"
+                        placeholderText="DD/MM/YYYY"
+                        isClearable
                         className="custom-date-picker"
                     />
 
