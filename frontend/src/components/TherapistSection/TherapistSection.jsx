@@ -28,7 +28,7 @@ const TherapistSection = () => {
                     <div className="therapist-highlights">
                         <p>✔ Advance Diploma in Cupping Therapy</p>
                         <p>✔ Certified Cupping Therapy Practitioner</p>
-                        <p>✔ 2+ Years of Experience</p>
+                        <p>✔ 5+ Years of Experience</p>
                         <p>✔ 350+ Happy Patients</p>
                     </div>
 

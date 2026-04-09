@@ -8,26 +8,32 @@ const ServicesComponent = () => {
         {
             title: "DRY CUPPING",
             description: "Traditional cupping therapy to detoxify the body and improve blood circulation.",
+            image : "/images/dry-cupping.png"
         },
         {
             title: "WET CUPPING",
-            description: "Helps reduce chronic pain in muscles, joints, and back."
+            description: "Helps reduce chronic pain in muscles, joints, and back.",
+            image : "/images/Wet-Cupping.jpg"
         },
         {
             title: "FIRE CUPPING",
-            description: "Used by athletes to improve recovery and muscle performance."
+            description: "Used by athletes to improve recovery and muscle performance.",
+            image : "/images/Fire-Cupping.jpg"
         },
         {
             title: "FACIAL CUPPING",
-            description: "Removes toxins from the body and improves overall health."
+            description: "Removes toxins from the body and improves overall health.",
+            image : "/images/Face-Cupping.png"
         },
         {
             title: "MASSAGE THERAPY",
-            description: " Is a form of manual therapy that involves the systematic manipulation of the body's soft tissues."
+            description: " Is a form of manual therapy that involves the systematic manipulation of the body's soft tissues.",
+            image : "/images/Massge-Therapy.png"
         },
         {
             title: "DERMA PLANNING",
-            description: "It is frequently used to improve skin texture, reduce the appearance of fine lines and acne scars."
+            description: "It is frequently used to improve skin texture, reduce the appearance of fine lines and acne scars.",
+            image : "/images/Derma-Planning.png"
         }
     ];
     return (
@@ -42,6 +48,8 @@ const ServicesComponent = () => {
                         services.map((service, index) => (
                             <div key={index} className="service-card">
                                 
+                                <img src={service.image} alt="images" />
+
                                 <h3>{service.title}</h3>
 
                                 <p>{service.description}</p>

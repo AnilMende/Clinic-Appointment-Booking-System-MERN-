@@ -30,6 +30,13 @@
     cursor: pointer;
 }
 
+.service-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
 .service-card h3{
     margin-bottom: 10px;
 }
