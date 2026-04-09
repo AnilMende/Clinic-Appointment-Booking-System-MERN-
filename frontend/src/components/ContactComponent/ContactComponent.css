@@ -1,6 +1,6 @@
 
 .contact{
-    padding: 60px 40px;
+    padding: 60px 20px;
     background: #ffffff;
 }
 
@@ -70,45 +70,15 @@
 }
 
 /* Mobile Responsiveness */
-@media (max-width: 1024px) {
-  .contact-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
 
-@media (max-width: 600px) {
-  .contact-grid {
-    grid-template-columns: 1fr;
-  }
-}
+@media (max-width: 768px) {
 
-
-@media (max-width: 480px) {
   .contact {
     padding: 40px 15px;
   }
 
-  .contact-container {
-    padding: 0 10px;
-  }
-}
-
-@media (max-width: 400px) {
-  .contact {
-    padding: 30px 10px;
-  }
-
-  .contact-container {
-    padding: 0 8px;
-  }
-}
-
-@media (max-width: 768px) {
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 15px;
   }
-  .contact-card{
-    width: 100%;
-  }
+  
 }

@@ -19,6 +19,8 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    padding: 0 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -36,7 +38,6 @@
 
 /* Image */
 .service-card img {
-    width: 100%;
     height: 130px;
     border-radius: 10px;
     object-fit: contain;
@@ -100,25 +101,22 @@
 /* Mobile Responsiveness */
 @media (max-width:768px) {
     .services-grid {
-        grid-template-columns: 1fr;
+        padding: 0 15px;
+        gap: 20px;
     }
+}
 
-    .services-container {
-        padding: 30px;
-        gap: 15px;
-    }
+/* For tablets */
+@media (max-width: 1024px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 
-    .service-card {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .service-card h3 {
-        font-size: 16px;
-    }
-
-    .service-card p {
-        font-size: 13px;
-        font-weight: 500;
-    }
+/* For mobiles */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    padding: 0 15px;
+  }
 }
