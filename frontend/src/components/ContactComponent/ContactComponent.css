@@ -6,9 +6,9 @@
 
 .contact-container{
     width: 100%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 0 20px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
     text-align: center;
 }
 
@@ -24,6 +24,7 @@
 }
 
 .contact-card{
+    width: 100%;
     background: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -106,5 +107,8 @@
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 15px;
+  }
+  .contact-card{
+    width: 100%;
   }
 }
