@@ -30,6 +30,11 @@
     cursor: pointer;
 }
 
+.testimonial-card:hover{
+    border: 2px solid #09caec;
+}
+
+
 .testimonial-text{
     font-size: 16px;
     margin-bottom: 15px;
@@ -38,7 +43,11 @@
 
 .testimonial-name{
     font-size: 14px;
-    color: #555;
+    color: #1f2937;
+}
+
+.testimonial-name:hover{
+    color: #09caec;
 }
 
 /* Mobile Responsiveness */

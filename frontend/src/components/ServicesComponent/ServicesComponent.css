@@ -1,49 +1,66 @@
-
-.services{
+.services {
     padding: 60px 40px;
     background: white;
 }
 
-.services-container{
+.services-container {
     width: 100%;
     max-width: 1200px;
     margin: auto;
     text-align: center;
 }
 
-.services-title{
+.services-title {
     font-size: 32px;
     margin-bottom: 40px;
 }
 
-.services-grid{
+.services-grid {
     display: grid;
-    grid-template-columns: repeat(3,1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
 
-.service-card{
-    background: #e8e5e5;
-    padding: 25px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0,0,0,0.08);
+/* Service Card */
+.service-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
     cursor: pointer;
 }
 
+/* Image */
 .service-card img {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
-  margin-bottom: 15px;
+    height: 130px;
+    border-radius: 10px;
+    object-fit: contain;
+    margin-bottom: 15px;
 }
 
-.service-card h3{
+/* Title */
+.service-card h3 {
+    font-size: 18px;
+    font-weight: 600;
     margin-bottom: 10px;
+    color: #09caec;
 }
 
-.service-card p{
-    font-size: 15px;
-    line-height: 1.6;
+/* Description */
+.service-card p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #292828;
+    font-weight: 500;
+}
+
+/* Hover Effect (Desktop only feel) */
+.service-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    border: 2px solid #06b6d4;
 }
 
 .services-info {
@@ -53,18 +70,18 @@
     margin-top: 30px;
 }
 
-.services-info img{
+.services-info img {
     height: 70px;
 }
 
-.services-info p{
+.services-info p {
     font-size: 20px;
     margin-left: 5px;
     color: red;
     font-weight: bold;
 }
 
-.services-bottom{
+.services-bottom {
     margin-top: 20px;
     display: flex;
     align-items: center;
@@ -73,13 +90,31 @@
     font-weight: 600;
 }
 
-.services{
+.services {
     scroll-margin-top: 90px;
 }
 
 /* Mobile Responsiveness */
-@media (max-width:768px){
-    .services-grid{
+@media (max-width:768px) {
+    .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .services-container {
+        padding: 30px;
+        gap: 15px;
+    }
+
+    .service-card {
+        padding: 15px;
+    }
+
+    .service-card h3 {
+        font-size: 16px;
+    }
+
+    .service-card p {
+        font-size: 13px;
+        font-weight: 500;
     }
 }
