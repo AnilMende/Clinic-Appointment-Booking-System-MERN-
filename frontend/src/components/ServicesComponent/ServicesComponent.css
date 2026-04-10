@@ -16,17 +16,19 @@
 }
 
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    padding: 0 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 0 15px; 
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Service Card */
 .service-card {
     width: 100%;
+    max-width: 100%;
+    overflow: hidden;
     background: #fff;
     border-radius: 16px;
     padding: 20px;
@@ -38,7 +40,7 @@
 
 /* Image */
 .service-card img {
-    height: 130px;
+    height: 120px;
     border-radius: 10px;
     object-fit: contain;
     margin-bottom: 15px;
@@ -99,11 +101,25 @@
 }
 
 /* Mobile Responsiveness */
-@media (max-width:768px) {
+/* @media (max-width:768px) {
     .services-grid {
         padding: 0 15px;
         gap: 20px;
     }
+} */
+
+@media (max-width: 768px) {
+  .services {
+    padding: 40px 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    padding: 0 8px; 
+    gap: 15px;
+  }
 }
 
 /* For tablets */

@@ -1,6 +1,6 @@
 
 .contact{
-    padding: 60px 20px;
+    padding: 40px 10px;
     background: #ffffff;
 }
 
@@ -8,7 +8,7 @@
     width: 100%;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 0 10px;
     text-align: center;
 }
 
@@ -43,11 +43,6 @@
   max-width: 100%;
 }
 
-.contact-card p {
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-}
-
 .contact-card h3{
     margin-bottom: 10px;
     color: #09caec;
@@ -55,7 +50,8 @@
 }
 
 .contact-card p{
-    font-size: 15px;
+    font-size: 13px;
+    word-break: break-word;
     color: #555;
 }
 

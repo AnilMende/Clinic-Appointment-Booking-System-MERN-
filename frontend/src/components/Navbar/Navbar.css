@@ -71,6 +71,13 @@
     cursor: pointer;
 }
 
+/* Fixing navbar padding for mobil */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 12px 15px;
+  }
+}
+
 
 /* For Mobile Responsiveness */
 @media (max-width:768px){
