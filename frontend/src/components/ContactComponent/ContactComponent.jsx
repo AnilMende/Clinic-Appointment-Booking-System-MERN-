@@ -30,9 +30,32 @@ const ContactComponent = () => {
                     </a>
 
                     {/* Instagram Card Opens instagram profile */}
-                    <a href="instagram://user?username=@A.K_HEALTHCARE_CENTRE"
+                    <a href="https://www.instagram.com/A.K_HEALTHCARE_CENTRE/"
                         target="_blank"
-                        rel="noreferrer" className="contact-card">
+                        rel="noreferrer" className="contact-card"
+
+                        onClick={(e) => {
+                            const username = "A.K_HEALTHCARE_CENTRE";
+
+                            // Detect mobile device
+                            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+                            if (isMobile) {
+                                e.preventDefault();
+
+                                const appUrl = `instagram://user?username=${username}`;
+                                const webUrl = `https://www.instagram.com/${username}/`;
+
+                                // Opening instagram app
+                                window.location.href = appUrl;
+
+                                // Fallback to browser if app doesn't open
+                                setTimeout(() => {
+                                    window.location.href = webUrl;
+                                }, 1500);
+                            }
+                        }}
+                    >
                         <p className="icon"><Instagram /></p>
                         <h3>Instagram</h3>
                         <p>@A.K_HEALTHCARE_CENTRE</p>
