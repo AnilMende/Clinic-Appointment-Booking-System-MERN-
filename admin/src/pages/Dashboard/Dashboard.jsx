@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useEffect, useState } from "react";
+import { format } from "date-fns";
 import { deleteAppointment, getAppointments, sendReminder, updateAppointment } from "../../api/appointment.js";
 
 import "./Dashboard.css";
@@ -39,32 +40,6 @@ const Dashboard = () => {
             toast.error("Update Failed");
         }
     }
-
-    //to delete a particular appointment
-    // const handleDelete = async (id) => {
-    //     try {
-    //         await deleteAppointment(id);
-    //         toast.success("Deleted Successfully");
-    //         fetchData();
-    //     } catch (error) {
-    //         toast.error("Delete Failed");
-    //     }
-    // };
-
-    //to handle remind the user by admin
-    // const handleReminder = async (id) => {
-    //     try {
-    //         await sendReminder(id);
-    //         toast.success("Reminder sent");
-    //     } catch (error) {
-    //         toast.error("Failed to send remainder");
-    //     }
-    // };
-    //to handle logout
-    // const handleLogout = () => {
-    //     localStorage.removeItem("token");
-    //     window.location.href = "/login";
-    // }
 
     // for the confirmations of remainder, deletion
     const [modal, setModal] = useState({
@@ -226,7 +201,7 @@ const Dashboard = () => {
                                         <td>{item.phone}</td>
 
                                         <td>
-                                            {new Date(item.date).toLocaleDateString()}
+                                            {format(new Date(item.date), "dd/MM/yyyy")}
                                         </td>
 
                                         <td>

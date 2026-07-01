@@ -1,3 +1,4 @@
+import { APPOINTMENT_SESSIONS } from "../constants/appointmentSessions.js";
 import Appointment from "../models/Appointment.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
@@ -188,4 +189,59 @@ export const sendReminder = asyncHandler(async (req, res) => {
     );
 
 
+})
+
+// Get the available sessions on particular date
+export const getAvailableSessions = asyncHandler(async (req, res) => {
+
+    const { date } = req.query;
+
+    if (!date) {
+        throw new ApiError(400, "Appointment date is required")
+    }
+
+    // Converting the selected date into the start and end of the day
+    const selectedDate = new Date(date);
+
+    const startOfDay = new Date(selectedDate);
+    startOfDay.setHours(0, 0, 0, 0);
+
+    const endOfDay = new Date(selectedDate);
+    endOfDay.setHours(23, 59, 59, 999);
+
+    // Finding all appointments for the selected day
+    const bookedAppointments = await Appointment.find(
+        {
+            date: {
+                $gte: startOfDay,
+                $lte: endOfDay
+            }
+        },
+        "session"
+    );
+
+    // Extract booked session names
+    const bookedSessions = bookedAppointments.map(
+        appointment => appointment.session
+    );
+
+    // Filter out booked sessions
+    const availableSessions = APPOINTMENT_SESSIONS.filter(
+        session => !bookedSessions.includes(session)
+    );
+
+    return res.status(200).json(
+        new ApiResponse(
+            200,
+            {
+                date,
+                availableSessions,
+                bookedSessions,
+                totalSessions: APPOINTMENT_SESSIONS.length,
+                bookedCount: bookedSessions.length,
+                availableCount: availableSessions.length
+            },
+            "Available sessions fetched successfully"
+        )
+    );
 })

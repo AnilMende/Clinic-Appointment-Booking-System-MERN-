@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { APPOINTMENT_SESSIONS } from "../constants/appointmentSessions.js";
 
 const appointmentSchema = new mongoose.Schema({
 
@@ -14,21 +15,21 @@ const appointmentSchema = new mongoose.Schema({
         trim: true
     },
     service: {
-        type : String,
-        required : true,
-        trim : true,
-        enum : ["Dry Cupping", "Wet Cupping", "Fire Cupping", "Facial Cupping", "Massage Therapy", "Derma Planning"]
+        type: String,
+        required: true,
+        trim: true,
+        enum: ["Dry Cupping", "Wet Cupping", "Fire Cupping", "Facial Cupping", "Massage Therapy", "Derma Planning"]
     },
-    gender : {
-        type : String,
-        enum : ["Male", "Female", "Prefer not to say"],
-        required : true
+    gender: {
+        type: String,
+        enum: ["Male", "Female", "Prefer not to say"],
+        required: true
     },
-    age : {
-        type : Number,
-        required : true,
-        min : [0, 'Age can not be negative'],
-        max : [100, "Please provide a valid age"]
+    age: {
+        type: Number,
+        required: true,
+        min: [0, 'Age can not be negative'],
+        max: [100, "Please provide a valid age"]
     },
     phone: {
         type: String,
@@ -40,10 +41,11 @@ const appointmentSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
-    session : {
-        type : String,
-        required : true,
-        enum : ["Morning", "Afternoon", "Evening"]
+    session: {
+        type: String,
+        required: true,
+        trim: true,
+        enum: APPOINTMENT_SESSIONS
     },
     status: {
         type: String,

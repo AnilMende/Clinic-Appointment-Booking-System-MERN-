@@ -2,6 +2,7 @@ import express from "express";
 
 import { createAppointment, deleteAppointment, getAllAppointments, 
          getAppointment, 
+         getAvailableSessions, 
          sendReminder, 
          updateAppointmentStatus } from "../controllers/appointmentController.js";
          
@@ -11,6 +12,10 @@ const router = express.Router();
 
 router.post("/appointments", createAppointment);
 
+// get available sessions
+router.get("/appointments/available-sessions", getAvailableSessions);
+
+// Get single appointment
 router.get("/appointments/:id", getAppointment);
 
 // Admin Routes uses the Middleware for the verification
@@ -24,6 +29,7 @@ router.delete("/admin/delete-appointment/:id", authMiddleware, deleteAppointment
 
 //appointment remind
 router.post("/admin/remind/:id", authMiddleware, sendReminder);
+
 
 
 export default router;

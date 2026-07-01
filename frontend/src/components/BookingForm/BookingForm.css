@@ -1,5 +1,4 @@
-
-.booking{
+.booking {
     padding: 60px 40px;
     background: #f9f9f9;
 }
@@ -22,25 +21,25 @@
     color: #222;
 }
 
-.booking-form{
+.booking-form {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
 .booking-form label {
-  display: block;
-  margin-bottom: 3px;
-  margin-top: 16px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #2c2c2c;
+    display: block;
+    margin-bottom: 3px;
+    margin-top: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #2c2c2c;
 }
 
 .booking-form label::after {
-  content: " *";
-  color: red;
-  font-weight: bold;
+    content: " *";
+    color: red;
+    font-weight: bold;
 }
 
 .booking-form input,
@@ -85,18 +84,32 @@
     transform: translateY(-1px);
 }
 
-.booking{
+.booking {
     scroll-margin-top: 90px;
 }
 
-.success-msg{
+.success-msg {
     color: green;
     margin-bottom: 10px;
 }
 
-.error-msg{
+.error-msg {
     color: red;
     margin-bottom: 10px;
+}
+
+.loading-session-message {
+    margin-top: 8px;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.no-session-message {
+    margin-top: 8px;
+    color: #dc2626;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 /* Mobile Responsiveness */

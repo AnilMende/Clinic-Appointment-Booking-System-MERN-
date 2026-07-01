@@ -6,6 +6,8 @@ import toast from "react-hot-toast";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+import { useEffect } from "react";
+
 const BookingForm = () => {
 
     //const base_url = "http://localhost:5000/api";
@@ -13,6 +15,12 @@ const BookingForm = () => {
 
     //when the reponse is submitting the button will be in loading state i.e.. Booking
     const [loading, setLoading] = useState(false);
+
+    const [loadingSessions, setLoadingSessions] = useState(false);
+
+    const [availableSessions, setAvailableSessions] = useState([]);
+
+    const [sessionCache, setSessionCache] = useState([]);
 
     const [formData, setFormData] = useState({
         name: "",
@@ -32,6 +40,68 @@ const BookingForm = () => {
         })
     };
 
+    // function to fecth all available sessions
+    const fetchAvailableSessions = async (selectedDate) => {
+
+        // Check cache first
+        if (sessionCache[selectedDate]) {
+
+            setAvailableSessions(sessionCache[selectedDate]);
+
+            return;
+        }
+
+        try {
+
+            setLoadingSessions(true);
+
+            const response = await axios.get(
+                `${base_url}/appointments/available-sessions`,
+                {
+                    params: {
+                        date: selectedDate
+                    }
+                }
+            );
+
+            const sessions = response.data.data.availableSessions;
+
+            setAvailableSessions(sessions);
+
+            // Store in cache
+            setSessionCache(prev => ({
+                ...prev,
+                [selectedDate]: sessions
+            }));
+
+        } catch (error) {
+
+            setAvailableSessions([]);
+
+            toast.error(
+                error?.response?.data?.message ||
+                "Failed to fetch available sessions"
+            );
+
+        } finally {
+
+            setLoadingSessions(false);
+
+        }
+
+    };
+
+    useEffect(() => {
+
+        if (formData.date) {
+            fetchAvailableSessions(formData.date);
+        } else {
+            setAvailableSessions([]);
+        }
+
+    }, [formData.date]);
+
+
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -47,6 +117,22 @@ const BookingForm = () => {
                 borderRadius: "8px",
                 background: "#333",
                 color: "#fff"
+            });
+
+            // Update cached sessions for this date
+            setSessionCache(prev => {
+
+                if (!prev[formData.date]) {
+                    return prev;
+                }
+
+                return {
+                    ...prev,
+                    [formData.date]: prev[formData.date].filter(
+                        session => session !== formData.session
+                    )
+                };
+
             });
 
             setFormData({
@@ -156,29 +242,51 @@ const BookingForm = () => {
                     <label>Select Appointment Date</label>
 
                     <DatePicker
-                        selected={formData.date ? new Date(formData.date + "T00:00:00") : null}
+                        selected={
+                            formData.date
+                                ? new Date(`${formData.date}T12:00:00`)
+                                : null
+                        }
                         onChange={(date) => {
 
                             if (!date) {
-                                setFormData({
-                                    ...formData,
-                                    date: "",
-                                });
-                            } else {
-                                setFormData({
-                                    ...formData,
-                                    date: date.toISOString().split("T")[0], // keeps backend format SAME
-                                })
-                            }
-                        }
 
-                        }
+                                setFormData(prev => ({
+                                    ...prev,
+                                    date: "",
+                                    session: ""
+                                }));
+
+                                return;
+                            }
+
+                            const formattedDate = [
+                                date.getFullYear(),
+                                String(date.getMonth() + 1).padStart(2, "0"),
+                                String(date.getDate()).padStart(2, "0")
+                            ].join("-");
+
+                            setFormData(prev => ({
+                                ...prev,
+                                date: formattedDate,
+                                session: ""
+                            }));
+
+                        }}
+
                         minDate={new Date()}
                         dateFormat="dd/MM/yyyy"
                         placeholderText="DD/MM/YYYY"
                         isClearable
                         className="custom-date-picker"
                     />
+                    {
+                        loadingSessions && (
+                            <p className="loading-session-message">
+                                Loading available sessions...
+                            </p>
+                        )
+                    }
 
                     <label>Select Session</label>
                     <select
@@ -186,14 +294,51 @@ const BookingForm = () => {
                         value={formData.session}
                         onChange={handleChange}
                         required
+                        disabled={
+                            !formData.date ||
+                            loadingSessions ||
+                            availableSessions.length === 0
+                        }
                     >
-                        <option value="" disabled>Select Session</option>
-                        <option>Morning</option>
-                        <option>Afternoon</option>
-                        <option>Evening</option>
-                    </select>
 
-                    <button type="submit" disabled={loading}>
+                        <option value="" disabled>
+
+                            {
+                                !formData.date
+                                    ? "Select a date first"
+                                    : loadingSessions
+                                        ? "Loading sessions..."
+                                        : availableSessions.length === 0
+                                            ? "No sessions available"
+                                            : "Select Session"
+                            }
+
+                        </option>
+
+                        {
+                            availableSessions.map((session) => (
+                                <option
+                                    key={session}
+                                    value={session}
+                                >
+                                    {session}
+                                </option>
+                            ))
+                        }
+
+                    </select>
+                    {
+                        formData.date &&
+                        availableSessions.length === 0 && (
+
+                            <p className="no-session-message">
+                                No sessions are available for the selected date.
+                            </p>
+
+                        )
+                    }
+
+                    <button type="submit" disabled={loading || !formData.session}>
                         {loading ? "Booking..." : "Book Appointment"}
                     </button>
 
